@@ -14,7 +14,7 @@ with open("all_qa_pairs.txt") as f:
 # with open("test_images_list.txt") as f:
 #     test_imgs = [x.replace("\n", "") for x in f.readlines()]
 
-df = pd.DataFrame({"question": [], "answer": [], "image_id":[], "image_path": []})
+df = pd.DataFrame({"question": [], "answer": [], "image_id":[]})
 
 for i in range(0, len(qa_data), 2):
     img_id = image_pattern.findall(qa_data[i])[0][3]
@@ -23,7 +23,6 @@ for i in range(0, len(qa_data), 2):
         "question": question,
         "answer": qa_data[i+1],
         "image_id": img_id,
-        "image_path": os.path.join("images", "{0}.png".format(img_id))
     }
     df = df.append(record, ignore_index=True)
 
