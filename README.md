@@ -1,4 +1,4 @@
-# Visual Question nswering with Multimodal Transformer Models
+# Visual Question Answering with Multimodal Transformers
 
 This repo contains the dataset & code for exploring multimodal *fusion-type* transformer models (from Huggingface 🤗) for the task of visual question answering.
 
@@ -20,7 +20,6 @@ Create a virtual environment & install the following packages:
 
 ## 📝 Notebook: [`VisualQuestionAnsweringWithTransformers.ipynb`](./VisualQuestionAnsweringWithTransformers.ipynb)
 
-***
 
 ## 🤗 Models for Experimentation:
 
@@ -32,6 +31,7 @@ Create a virtual environment & install the following packages:
     - ViT (Vision Transformer): `'google/vit-base-patch16-224-in21k'`
     - DeiT (Data-Efficient Image Transformer): `'facebook/deit-base-distilled-patch16-224'`
     - BEiT (Bidirectional Encoder representation from Image Transformers): `'microsoft/beit-base-patch16-224-pt22k-ft22k'`
+
 
 ## 📊 VQA Performance of Various Models:
 
