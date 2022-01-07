@@ -4,6 +4,20 @@ This repo contains the dataset & code for exploring multimodal *fusion-type* tra
 
 ## 🗂️ Dataset Used: [DAQUAR Dataset](https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/vision-and-language/visual-turing-challenge/)
 
+## ☑️ Requirements
+
+Create a virtual environment & install the following packages:
+
+- `datasets==1.17.0`
+- `nltk==3.5`
+- `pandas==0.24.2`
+- `scikit-learn==0.23.2`
+- `torch==1.8.2+cu111`
+- `transformers==4.15.0`
+
+> _**Note:** It is best to have some GPU available to train the multimodal models (Google Colab can be used)._
+
+
 ## 📝 Notebook: [`VisualQuestionAnsweringWithTransformers.ipynb`](./VisualQuestionAnsweringWithTransformers.ipynb)
 
 ***
