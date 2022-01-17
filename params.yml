@@ -1,0 +1,55 @@
+base:
+  use_cuda: True
+
+data:
+  dataset_folder: dataset
+  images_folder: images
+  train_dataset: data_train.csv
+  test_dataset: data_eval.csv
+  question_col: question
+  image_col: image_id
+  answer_col: answer
+  answer_space: answer_space.txt
+
+tokenizer:
+  model: bert-base-uncased
+  padding: longest
+  max_length: 24
+  truncation: True
+
+feature_extractor:
+  model: google/vit-base-patch16-224-in21k
+
+model:
+  name: bert-vit  # Custom name for the multimodal model
+  text_encoder: bert-base-uncased # Valid transformer model for text encoding from HuggingFace
+  image_encoder: google/vit-base-patch16-224-in21k  # Valid transformer model for image encoding from HuggingFace
+  intermediate_dims: 512
+  dropout: 0.5
+
+train:
+  output_dir: checkpoint
+  seed: 12345
+  num_train_epochs: 5
+  learning_rate: 5.0e-5
+  weight_decay: 0.0
+  warmup_ratio: 0.0
+  warmup_steps: 0
+  evaluation_strategy: steps
+  eval_steps: 100
+  logging_strategy: steps
+  logging_steps: 100
+  save_strategy: steps
+  save_steps: 100
+  save_total_limit: 3            # Save only the last 3 checkpoints at any given time while training 
+  metric_for_best_model: wups
+  per_device_train_batch_size: 32
+  per_device_eval_batch_size: 32
+  remove_unused_columns: False
+  dataloader_num_workers: 8
+  load_best_model_at_end: True
+
+metrics:
+  metrics_folder: metrics
+  training_metrics_file: training_metrics.json
+  eval_metrics_file: eval_metrics.json  
