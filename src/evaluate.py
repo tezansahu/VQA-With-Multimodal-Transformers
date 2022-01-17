@@ -7,7 +7,7 @@ class WuPalmerScoreCalculator:
     def __init__(self, answer_space: List[str]):
         self.answer_space = answer_space
 
-    def wup_measure(a,b,similarity_threshold=0.925):
+    def wup_measure(self, a: str, b: str, similarity_threshold: float = 0.925):
         """
         Returns Wu-Palmer similarity score.
         More specifically, it computes:
@@ -68,7 +68,7 @@ class WuPalmerScoreCalculator:
         return final_score
 
 
-    def batch_wup_measure(self, labels, preds):
+    def batch_wup_measure(self, labels: np.ndarray, preds: np.ndarray) -> float:
         wup_scores = [self.wup_measure(self.answer_space[label], self.answer_space[pred]) for label, pred in zip(labels, preds)]
         return np.mean(wup_scores)
 

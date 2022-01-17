@@ -8,7 +8,7 @@ from transformers import AutoTokenizer, AutoFeatureExtractor
 
 @dataclass
 class MultimodalCollator:
-    def __init__(self, config):
+    def __init__(self, config: Dict):
         self.config = config
         self.tokenizer = AutoTokenizer.from_pretrained(config["tokenizer"]["model"])
         self.preprocessor = AutoFeatureExtractor.from_pretrained(config["feature_extractor"]["model"])

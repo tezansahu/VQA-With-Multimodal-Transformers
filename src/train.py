@@ -5,11 +5,9 @@ from transformers import TrainingArguments, Trainer, logging
 def setTrainingArgs(config: Dict, device) -> TrainingArguments:
     training_args = config["train"]
     if device.type == 'cuda':
-        training_args = {
-            **training_args,
-            "fp16": True
-        }
-    return training_args
+        training_args["fp16"] = True
+        
+    return TrainingArguments(**training_args)
 
 def trainMultimodalModelForVQA(config, device, dataset, collator, model, compute_metrics):
     training_args = setTrainingArgs(config, device)

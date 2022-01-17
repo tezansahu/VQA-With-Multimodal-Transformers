@@ -1,10 +1,11 @@
 import os
 import yaml
 import argparse
+import logging
 import json
 from typing import Text
-
 import torch
+import transformers
 
 from load_data import loadDaquarDataset
 from data_collator import createMultimodalDataCollator
@@ -12,7 +13,10 @@ from model import createMultimodalModelForVQA
 from train import trainMultimodalModelForVQA
 from evaluate import WuPalmerScoreCalculator
 
-def main(config_path: Text):
+def main(config_path: Text) -> None:
+    transformers.logging.set_verbosity_error()
+    logging.basicConfig(level=logging.INFO)
+    
     with open(config_path) as conf_file:
         config = yaml.safe_load(conf_file)
     
@@ -23,21 +27,31 @@ def main(config_path: Text):
         device =  torch.device('cpu')
     
     data = loadDaquarDataset(config)
+    logging.info("Loaded processed DAQUAR Dataset")
+    
     multimodal_collator = createMultimodalDataCollator(config)
+    logging.info("Created data collator")
+    
     multimodal_model = createMultimodalModelForVQA(config, data["answer_space"]).to(device)
+    logging.info("Initialized multimodal model for VQA")
+    
+    wups_calculator = WuPalmerScoreCalculator(data["answer_space"])
 
+    
+    logging.info("Training started...")
     training_metrics, eval_multi_metrics = trainMultimodalModelForVQA(
         config, device, data["dataset"], 
         multimodal_collator, multimodal_model,
-        WuPalmerScoreCalculator.compute_metrics
+        wups_calculator.compute_metrics
     )
-
+    
+    logging.info("Training complete")
     
     os.makedirs(config["metrics"]["metrics_folder"], exist_ok=True)
 
     training_metrics_path = os.path.join(config["metrics"]["metrics_folder"], config["metrics"]["training_metrics_file"])
     json.dump(
-        obj=training_metrics,
+        obj=training_metrics[2],
         fp=open(training_metrics_path, 'w'),
         indent=4
     )
@@ -49,7 +63,7 @@ def main(config_path: Text):
         indent=4
     )
 
-
+    logging.info("Metrics saved")
 
 
 if __name__ == '__main__':

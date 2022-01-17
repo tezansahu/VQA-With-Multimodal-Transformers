@@ -9,7 +9,7 @@ class MultimodalVQAModel(nn.Module):
     def __init__(
             self,
             num_labels: int,
-            intermediate_dim: int,
+            intermediate_dims: int,
             dropout: float,
             pretrained_text_name: str,
             pretrained_image_name: str):
@@ -26,12 +26,12 @@ class MultimodalVQAModel(nn.Module):
             self.pretrained_image_name,
         )
         self.fusion = nn.Sequential(
-            nn.Linear(self.text_encoder.config.hidden_size + self.image_encoder.config.hidden_size, intermediate_dim),
+            nn.Linear(self.text_encoder.config.hidden_size + self.image_encoder.config.hidden_size, intermediate_dims),
             nn.ReLU(),
             nn.Dropout(dropout),
         )
         
-        self.classifier = nn.Linear(intermediate_dim, self.num_labels)
+        self.classifier = nn.Linear(intermediate_dims, self.num_labels)
         
         self.criterion = nn.CrossEntropyLoss()
     
