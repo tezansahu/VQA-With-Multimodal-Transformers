@@ -18,7 +18,7 @@ Create a virtual environment & install the following packages:
 > _**Note:** It is best to have some GPU available to train the multimodal models (Google Colab can be used)._
 
 
-## 📝 Notebook: [`VisualQuestionAnsweringWithTransformers.ipynb`](./VisualQuestionAnsweringWithTransformers.ipynb)
+## 📝 Notebook: [`VisualQuestionAnsweringWithTransformers.ipynb`](./notebooks/VisualQuestionAnsweringWithTransformers.ipynb)
 
 
 ## 🤗 Models for Experimentation:
