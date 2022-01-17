@@ -20,8 +20,8 @@ class MultimodalCollator:
             max_length=self.config["tokenizer"]["max_length"],
             truncation=self.config["tokenizer"]["truncation"],
             return_tensors='pt',
-            return_token_type_ids=True,
-            return_attention_mask=True,
+            return_token_type_ids=self.config["tokenizer"]["return_token_type_ids"],
+            return_attention_mask=self.config["tokenizer"]["return_attention_mask"],
         )
         return {
             "input_ids": encoded_text['input_ids'].squeeze(),

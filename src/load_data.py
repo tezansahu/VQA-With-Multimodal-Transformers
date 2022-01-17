@@ -7,7 +7,7 @@ def loadDaquarDataset(config: Dict) -> Dict:
         "csv", 
         data_files={
             "train": os.path.join(config["data"]["dataset_folder"], config["data"]["train_dataset"]),
-            "test": os.path.join(config["data"]["dataset_folder"], config["data"]["test_dataset"])
+            "test": os.path.join(config["data"]["dataset_folder"], config["data"]["eval_dataset"])
         }
     )
 

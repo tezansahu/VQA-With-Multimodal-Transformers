@@ -4,8 +4,9 @@ base:
 data:
   dataset_folder: dataset
   images_folder: images
+  all_qa_pairs_file: all_qa_pairs.txt
   train_dataset: data_train.csv
-  test_dataset: data_eval.csv
+  eval_dataset: data_eval.csv
   question_col: question
   image_col: image_id
   answer_col: answer
@@ -16,6 +17,8 @@ tokenizer:
   padding: longest
   max_length: 24
   truncation: True
+  return_token_type_ids: True
+  return_attention_mask: True
 
 feature_extractor:
   model: google/vit-base-patch16-224-in21k
