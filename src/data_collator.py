@@ -10,8 +10,8 @@ from transformers import AutoTokenizer, AutoFeatureExtractor
 class MultimodalCollator:
     def __init__(self, config: Dict):
         self.config = config
-        self.tokenizer = AutoTokenizer.from_pretrained(config["tokenizer"]["model"])
-        self.preprocessor = AutoFeatureExtractor.from_pretrained(config["feature_extractor"]["model"])
+        self.tokenizer = AutoTokenizer.from_pretrained(config["model"]["text_encoder"])
+        self.preprocessor = AutoFeatureExtractor.from_pretrained(config["model"]["image_encoder"])
 
     def tokenize_text(self, texts: List[str]):
         encoded_text = self.tokenizer(

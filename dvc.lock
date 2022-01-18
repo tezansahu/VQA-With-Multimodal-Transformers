@@ -1,0 +1,102 @@
+schema: '2.0'
+stages:
+  process_daquar_dataset:
+    cmd: python src/process_dataset.py --config=params.yaml
+    deps:
+    - path: dataset/all_qa_pairs.txt
+      md5: 8bb5a60ef05a10f6eec30256c0fd393a
+      size: 775289
+    - path: src/process_dataset.py
+      md5: c2be221dae0938c5f1faeea1714b0bf0
+      size: 2665
+    params:
+      params.yaml:
+        data:
+          dataset_folder: dataset
+          images_folder: images
+          all_qa_pairs_file: all_qa_pairs.txt
+          train_dataset: data_train.csv
+          eval_dataset: data_eval.csv
+          question_col: question
+          image_col: image_id
+          answer_col: answer
+          answer_space: answer_space.txt
+    outs:
+    - path: dataset/answer_space.txt
+      md5: deb9f22917ecf96c1f97f68af27b536a
+      size: 5925
+    - path: dataset/data_eval.csv
+      md5: 96a91a6c3b318d8be0ac43cc4267d65d
+      size: 132545
+    - path: dataset/data_train.csv
+      md5: 622118a760606dbce3a3b3d2daf02292
+      size: 533109
+  train:
+    cmd: python src/main.py --config=params.yaml
+    deps:
+    - path: dataset/answer_space.txt
+      md5: deb9f22917ecf96c1f97f68af27b536a
+      size: 5925
+    - path: dataset/data_eval.csv
+      md5: 96a91a6c3b318d8be0ac43cc4267d65d
+      size: 132545
+    - path: dataset/data_train.csv
+      md5: 622118a760606dbce3a3b3d2daf02292
+      size: 533109
+    - path: src/main.py
+      md5: b929613ca16a005c0b33b18c252c7031
+      size: 2120
+    params:
+      params.yaml:
+        base:
+          use_cuda: true
+        data:
+          dataset_folder: dataset
+          images_folder: images
+          all_qa_pairs_file: all_qa_pairs.txt
+          train_dataset: data_train.csv
+          eval_dataset: data_eval.csv
+          question_col: question
+          image_col: image_id
+          answer_col: answer
+          answer_space: answer_space.txt
+        metrics:
+          metrics_folder: metrics
+          metrics_file: metrics.json
+        model:
+          name: bert_vit
+          text_encoder: bert-base-uncased
+          image_encoder: google/vit-base-patch16-224-in21k
+          intermediate_dims: 512
+          dropout: 0.5
+        tokenizer:
+          padding: longest
+          max_length: 24
+          truncation: true
+          return_token_type_ids: true
+          return_attention_mask: true
+        train:
+          output_dir: checkpoint
+          seed: 12345
+          num_train_epochs: 1
+          learning_rate: 5e-05
+          weight_decay: 0.0
+          warmup_ratio: 0.0
+          warmup_steps: 0
+          evaluation_strategy: steps
+          eval_steps: 100
+          logging_strategy: steps
+          logging_steps: 100
+          save_strategy: steps
+          save_steps: 100
+          save_total_limit: 3
+          metric_for_best_model: wups
+          per_device_train_batch_size: 32
+          per_device_eval_batch_size: 32
+          remove_unused_columns: false
+          dataloader_num_workers: 8
+          load_best_model_at_end: true
+    outs:
+    - path: metrics/metrics.json
+      md5: dc01a0c92e7b0f3145fde3853ac80759
+      size: 414

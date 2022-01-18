@@ -39,7 +39,7 @@ def main(config_path: Text) -> None:
 
     
     logging.info("Training started...")
-    training_metrics, eval_multi_metrics = trainMultimodalModelForVQA(
+    training_metrics, eval_metrics = trainMultimodalModelForVQA(
         config, device, data["dataset"], 
         multimodal_collator, multimodal_model,
         wups_calculator.compute_metrics
@@ -48,21 +48,15 @@ def main(config_path: Text) -> None:
     logging.info("Training complete")
     
     os.makedirs(config["metrics"]["metrics_folder"], exist_ok=True)
-
-    training_metrics_path = os.path.join(config["metrics"]["metrics_folder"], config["metrics"]["training_metrics_file"])
+    
+    metrics = {**training_metrics[2], **eval_metrics}
+               
+    metrics_path = os.path.join(config["metrics"]["metrics_folder"], config["metrics"]["metrics_file"])
     json.dump(
-        obj=training_metrics[2],
-        fp=open(training_metrics_path, 'w'),
+        obj=metrics,
+        fp=open(metrics_path, 'w'),
         indent=4
     )
-
-    eval_metrics_path = os.path.join(config["metrics"]["metrics_folder"], config["metrics"]["eval_metrics_file"])
-    json.dump(
-        obj=eval_multi_metrics,
-        fp=open(eval_metrics_path, 'w'),
-        indent=4
-    )
-
     logging.info("Metrics saved")
 
 

@@ -13,15 +13,11 @@ data:
   answer_space: answer_space.txt
 
 tokenizer:
-  model: bert-base-uncased
   padding: longest
   max_length: 24
   truncation: True
   return_token_type_ids: True
   return_attention_mask: True
-
-feature_extractor:
-  model: google/vit-base-patch16-224-in21k
 
 model:
   name: bert_vit  # Custom name for the multimodal model
@@ -33,7 +29,7 @@ model:
 train:
   output_dir: checkpoint
   seed: 12345
-  num_train_epochs: 5
+  num_train_epochs: 1
   learning_rate: 5.0e-5
   weight_decay: 0.0
   warmup_ratio: 0.0
@@ -54,5 +50,4 @@ train:
 
 metrics:
   metrics_folder: metrics
-  training_metrics_file: training_metrics.json
-  eval_metrics_file: eval_metrics.json  
+  metrics_file: metrics.json

@@ -1,4 +1,5 @@
 import os
+import shutil
 from typing import Dict
 from transformers import TrainingArguments, Trainer, logging
 
@@ -12,6 +13,9 @@ def setTrainingArgs(config: Dict, device) -> TrainingArguments:
 def trainMultimodalModelForVQA(config, device, dataset, collator, model, compute_metrics):
     training_args = setTrainingArgs(config, device)
     training_args.output_dir = os.path.join(training_args.output_dir, config["model"]["name"])
+    
+    if os.path.isdir(training_args.output_dir):
+        shutil.rmtree(training_args.output_dir)
 
     multi_trainer = Trainer(
         model,
