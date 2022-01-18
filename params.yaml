@@ -20,9 +20,9 @@ tokenizer:
   return_attention_mask: True
 
 model:
-  name: bert_beit  # Custom name for the multimodal model
+  name: roberta_vit  # Custom name for the multimodal model
   text_encoder: roberta-base # Valid transformer model for text encoding from HuggingFace
-  image_encoder: microsoft/beit-base-patch16-224-pt22k-ft22k  # Valid transformer model for image encoding from HuggingFace
+  image_encoder: google/vit-base-patch16-224-in21k  # Valid transformer model for image encoding from HuggingFace
   intermediate_dims: 512
   dropout: 0.5
 
