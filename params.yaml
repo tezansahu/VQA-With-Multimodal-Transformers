@@ -20,9 +20,9 @@ tokenizer:
   return_attention_mask: True
 
 model:
-  name: bert-vit  # Custom name for the multimodal model
+  name: bert-deit  # Custom name for the multimodal model
   text_encoder: bert-base-uncased # Valid transformer model for text encoding from HuggingFace
-  image_encoder: google/vit-base-patch16-224-in21k  # Valid transformer model for image encoding from HuggingFace
+  image_encoder: facebook/deit-base-distilled-patch16-224  # Valid transformer model for image encoding from HuggingFace
   intermediate_dims: 512
   dropout: 0.5
 
