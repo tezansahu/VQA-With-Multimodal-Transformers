@@ -12,6 +12,7 @@ from data_collator import createMultimodalDataCollator
 from model import createMultimodalModelForVQA
 from train import trainMultimodalModelForVQA
 from evaluate import WuPalmerScoreCalculator
+from utils import countTrainableParameters
 
 def main(config_path: Text) -> None:
     transformers.logging.set_verbosity_error()
@@ -50,7 +51,8 @@ def main(config_path: Text) -> None:
     os.makedirs(config["metrics"]["metrics_folder"], exist_ok=True)
     
     metrics = {**training_metrics[2], **eval_metrics}
-               
+    metrics["num_params"] = countTrainableParameters(multimodal_model)
+    
     metrics_path = os.path.join(config["metrics"]["metrics_folder"], config["metrics"]["metrics_file"])
     json.dump(
         obj=metrics,
