@@ -64,9 +64,9 @@ stages:
           metrics_folder: metrics
           metrics_file: metrics.json
         model:
-          name: albert-vit
+          name: albert-deit
           text_encoder: albert-base-v2
-          image_encoder: google/vit-base-patch16-224-in21k
+          image_encoder: facebook/deit-base-distilled-patch16-224
           intermediate_dims: 512
           dropout: 0.5
         tokenizer:
@@ -98,5 +98,5 @@ stages:
           load_best_model_at_end: true
     outs:
     - path: metrics/metrics.json
-      md5: a322f071ef6cacef16584f634b6d305b
-      size: 444
+      md5: 0cf7b8d6e6c8309dcae815e27717d013
+      size: 446
