@@ -20,9 +20,9 @@ tokenizer:
   return_attention_mask: True
 
 model:
-  name: albert-deit  # Custom name for the multimodal model
+  name: albert-beit  # Custom name for the multimodal model
   text_encoder: albert-base-v2 # Valid transformer model for text encoding from HuggingFace
-  image_encoder: facebook/deit-base-distilled-patch16-224  # Valid transformer model for image encoding from HuggingFace
+  image_encoder: microsoft/beit-base-patch16-224-pt22k-ft22k  # Valid transformer model for image encoding from HuggingFace
   intermediate_dims: 512
   dropout: 0.5
 
