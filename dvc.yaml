@@ -7,9 +7,12 @@ stages:
     params:
     - data
     outs:
-    - dataset/data_train.csv
-    - dataset/data_eval.csv
-    - dataset/answer_space.txt
+    - dataset/data_train.csv:
+        cache: false
+    - dataset/data_eval.csv:
+        cache: false
+    - dataset/answer_space.txt:
+        cache: false
   
   train:
     cmd: python src/main.py --config=params.yaml
@@ -26,6 +29,7 @@ stages:
     - train
     - metrics
     metrics:
-    - metrics/metrics.json
+    - metrics/metrics.json:
+        cache: false
         
     
