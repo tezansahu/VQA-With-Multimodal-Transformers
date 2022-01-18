@@ -64,9 +64,9 @@ stages:
           metrics_folder: metrics
           metrics_file: metrics.json
         model:
-          name: roberta-beit
-          text_encoder: roberta-base
-          image_encoder: microsoft/beit-base-patch16-224-pt22k-ft22k
+          name: albert-vit
+          text_encoder: albert-base-v2
+          image_encoder: google/vit-base-patch16-224-in21k
           intermediate_dims: 512
           dropout: 0.5
         tokenizer:
@@ -98,5 +98,5 @@ stages:
           load_best_model_at_end: true
     outs:
     - path: metrics/metrics.json
-      md5: b086705b6271593057f58bb9ce96d10a
-      size: 447
+      md5: a322f071ef6cacef16584f634b6d305b
+      size: 444
