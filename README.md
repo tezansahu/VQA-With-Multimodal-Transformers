@@ -24,8 +24,22 @@ In particular, we will require the following packages:
 
 ## 📝 Notebook: [`VisualQuestionAnsweringWithTransformers.ipynb`](./notebooks/VisualQuestionAnsweringWithTransformers.ipynb)
 
+## 🧪 Experimentation
 
-## 🤗 Models for Experimentation:
+### ⚡ Pipeline & Scripts
+The `src/` folder contains all the scripts necessary for data processing & model training. All the configs & hyperparameters are specified in teh `params.yaml` file.
+
+Following are the important scripts to experiment with the VQA models:
+
+- `src/process_data.py`: Process the raw DAQUAR dataset available in `dataset/` folder & split it into training & evaluation sets, along with the space of all possible answers
+- `src/main.py`: Train & evaluate the multimodal VQA model after loading the processed dataset.
+- `src/inference.py`: Use a trained multimodal VQA model from a checkpoint to answer a question, given a reference image
+
+After making necessary changes to the `params.yaml` file, the pipeline can be automated by running `dvc repro`. This will run the data processing & model training (& evaluation) stages.
+
+For inferencing, run `python src/inference.py --config=params.yaml --img_path=<path-to-image> --question=<question>`
+
+### 🤗 Models for Experimentation:
 
 - Text Transformers (for encoding questions):
     - BERT (Bidirectional Encoder Representations from Transformers): `'bert-base-uncased'`
@@ -37,7 +51,7 @@ In particular, we will require the following packages:
     - BEiT (Bidirectional Encoder representation from Image Transformers): `'microsoft/beit-base-patch16-224-pt22k-ft22k'`
 
 
-## 📊 VQA Performance of Various Models:
+### 📊 VQA Performance of Various Models:
 
 | Text Transformer | Image Transformer | Wu & Palmer Score | Accuracy | F1 | No. of Trainable Parameters |
 | :---: | :---: | :---: | :---: | :---: | :---: |
