@@ -41,15 +41,15 @@ In particular, we will require the following packages:
 
 | Text Transformer | Image Transformer | Wu & Palmer Score | Accuracy | F1 | No. of Trainable Parameters |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| BERT | ViT | 0.281 | 0.231 | 0.022 | 197M |
-| BERT | DeiT | 0.295 | 0.245 | 0.027 | 197M |
-| BERT | BEiT | 0.295 | 0.244 | 0.026 | 196M |
-| RoBERTa | ViT | 0.287 | 0.244 | 0.026 | 212M |
-| RoBERTa | DeiT | 0.296 | 0.246 | 0.029 | 212M |
-| _**RoBERTa**_ | _**BEiT**_ | _**0.308**_ | _**0.259**_ | _**0.034**_ | _**211M**_ |
-| ALBERT | ViT | 0.280 | 0.230 | 0.021 | 99M |
-| ALBERT | DeiT | 0.200 | 0.151 | 0.014 | 99M |
-| ALBERT | BEiT | 0.253 | 0.197 | 0.023 | 98M |
+| BERT | ViT | 0.286 | 0.235 | 0.020 | 197M |
+| BERT | DeiT | 0.297 | 0.246 | 0.027 | 197M |
+| BERT | BEiT | 0.303 | 0.254 | **0.034** | 196M |
+| RoBERTa | ViT | 0.294 | 0.246 | 0.025 | 212M |
+| RoBERTa | DeiT | 0.291 | 0.242 | 0.028 | 212M |
+| RoBERTa | BEiT | _**0.308**_ | _**0.261**_ | 0.033 | 211M |
+| ALBERT | ViT | 0.265 | 0.215 | 0.018 | 99M |
+| ALBERT | DeiT | 0.140 | 0.085 | 0.002 | 99M |
+| ALBERT | BEiT | 0.220 | 0.162 | 0.017 | 98M |
 
 ***
 
