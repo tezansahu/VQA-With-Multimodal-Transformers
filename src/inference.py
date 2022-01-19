@@ -61,6 +61,7 @@ def main(config_path: Text, img_path: Text, question: Text) -> None:
     
     # Tokenize the question & featurize the image
     logging.info("Tokenizing the question...")
+    question = question.replace("?", "").strip()                    # remove the question mark (if present) & extra spaces before tokenizing
     tokenized_question = tokenizeQuestion(config, question, device)
     logging.info("Featurizing the image...")
     featurized_img = featurizeImage(config, img_path, device)
