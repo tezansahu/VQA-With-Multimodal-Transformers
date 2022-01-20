@@ -53,6 +53,8 @@ For inferencing, run `python src/inference.py --config=params.yaml --img_path=<p
 
 ### 📊 VQA Performance of Various Models:
 
+> _To know about **Wu-Palmer Similarity Score**, check out [this video](https://youtu.be/2sQp7jJJmeg)!_
+
 | Text Transformer | Image Transformer | Wu & Palmer Score | Accuracy | F1 | No. of Trainable Parameters |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | BERT | ViT | 0.286 | 0.235 | 0.020 | 197M |
@@ -64,6 +66,8 @@ For inferencing, run `python src/inference.py --config=params.yaml --img_path=<p
 | ALBERT | ViT | 0.265 | 0.215 | 0.018 | 99M |
 | ALBERT | DeiT | 0.140 | 0.085 | 0.002 | 99M |
 | ALBERT | BEiT | 0.220 | 0.162 | 0.017 | 98M |
+
+#### 📈 [DVC Studio Dashboard](https://studio.iterative.ai/user/tezansahu/views/VQA-With-Multimodal-Transformers-nq8zlqu0p5)
 
 ***
 
